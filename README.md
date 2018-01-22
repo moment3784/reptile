@@ -1,6 +1,13 @@
-# eblog
+# reptile
 
 > Nuxt.js project
+
+这是一个个人测试学习vue + nuxt + mint-ui + node爬虫的作品
+
+### 爬虫接口引入
+{% blockquote ecitlm https://github.com/ecitlm/Node-SpliderApi/tree/splider2 hexo从零开始到搭建完整 %}
+基于nodejs 的爬虫 API接口项目
+{% endblockquote %}
 
 ## Build Setup
 
