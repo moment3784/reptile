@@ -20,11 +20,12 @@ export default {
     let ribao
     try {
       ribao = await axios.get('http://localhost:3000/api/daily_list')
-      // ribao = await axios.get('http://localhost:3000/test')
     } catch (error) {
       console.error('日报数据获取报错：' + error)
     }
-    // if (ribao.code !== '200') return
+    if (!ribao || ribao.data.length === 0) {
+      console.log('源数据获取失败！')
+    }
     return {
       ribao: ribao.data
     }

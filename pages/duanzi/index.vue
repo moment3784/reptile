@@ -34,20 +34,19 @@ import axios from 'axios'
 
 export default {
   async asyncData ({ params, error }) {
-    let dzList, dzPic, dzFun
     try {
-      dzList = await axios.get('http://localhost:3000/api/joke_list/1')
-      dzPic = await axios.get('http://localhost:3000/api/joke_img')
-      dzFun = await axios.get('http://localhost:3000/api/joke_photo/1')
-      // dzList = await axios.get('http://localhost:3000/test')
+      let [dzList, dzPic, dzFun] = await Promise.all([
+        axios.get('http://localhost:3000/api/joke_list/1'),
+        axios.get('http://localhost:3000/api/joke_img'),
+        axios.get('http://localhost:3000/api/joke_photo/1')
+      ])
+      return {
+        dzList: dzList.data.data,
+        dzPic: dzPic.data.data,
+        dzFun: dzFun.data.data
+      }
     } catch (error) {
       console.error('日报数据获取报错：' + error)
-    }
-    // if (dzList.code !== '200') return
-    return {
-      dzList: dzList.data.data,
-      dzPic: dzPic.data.data,
-      dzFun: dzFun.data.data
     }
   },
   data () {

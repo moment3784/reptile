@@ -1,10 +1,7 @@
 <template>
   <div>
     <my-header></my-header>
-    <keep-alive include="ribao">
-      <nuxt/>
-    </keep-alive>
-    <!-- <my-footer/> -->
+    <nuxt/>
   </div>
 </template>
 
