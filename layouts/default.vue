@@ -2,15 +2,18 @@
   <div>
     <my-header></my-header>
     <nuxt/>
+    <fly-top></fly-top>
   </div>
 </template>
 
 <script>
 import MyHeader from '~/components/Header.vue'
+import FlyTop from '~/components/FlyTop.vue'
 
 export default {
   components: {
-    MyHeader
+    MyHeader,
+    FlyTop
   }
 }
 </script>

@@ -1,13 +1,14 @@
 <template>
-  <section style="background-color: #f2f2f2">
-    <div class="list-item">{{dataContent}}</div>
-  </section>
+  <div class="list-item">
+    {{dataContent}}
+  </div>
 </template>
 
 <style lang="scss">
   .list-item{
     padding: 10px;
     background-color: #fff;
+    border-bottom: 1px solid #ccc; 
   }
   .list-item:not(:first-child){
     margin-top: 10px;

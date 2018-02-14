@@ -1,8 +1,15 @@
 <template>
   <div>
+    <ul
+      v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="loading"
+      infinite-scroll-distance="10">
+      <li v-for="item in list">{{ item }}</li>
+    </ul>
+    <mt-spinner type="fading-circle"></mt-spinner>
     <!-- <keep-alive include="ribao"> -->
     <!-- <ri-bao v-show="false"></ri-bao> -->
-    <duan-zi></duan-zi>
+    <!-- <duan-zi></duan-zi> -->
     <!-- </keep-alive> -->
   </div>
 </template>
@@ -13,6 +20,13 @@ import RiBao from './ribao'
 import DuanZi from './duanzi'
 
 export default {
+  data () {
+    return {
+      list: [],
+      allLoaded: true,
+      loading: false
+    }
+  },
   computed: mapState([
     'counter'
     // viewId,
@@ -20,6 +34,36 @@ export default {
   components: {
     RiBao,
     DuanZi
+  },
+  mounted () {
+    for (var i = 0; i < 100; i++) {
+      this.list.push(i)
+    }
+    // alert(this.$store.state.counter)
+  },
+  methods: {
+    loadMore () {
+      console.log('滚动加载！')
+      this.loading = true
+      setTimeout(() => {
+        let last = this.list[this.list.length - 1]
+        for (let i = 1; i <= 10; i++) {
+          this.list.push(last + i)
+        }
+        this.loading = false
+      }, 2500)
+    },
+    loadTop () {
+      console.log('loadTop')
+      // 加载更多数据
+      this.$refs.loadmore.onTopLoaded()
+    },
+    loadBottom () {
+      console.log('loadBottom--------------------------')
+      // 加载更多数据
+      this.allLoaded = true // 若数据已全部获取完毕
+      this.$refs.loadmore.onBottomLoaded()
+    }
   }
 }
 </script>
